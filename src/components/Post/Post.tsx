@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { deletePost } from '../../store/Posts/actionCreator';
 
 export const Post: React.FC<{ content: PostInterface }> = ({ content }) => {
-   // const [updateComponent, setUpdateComponent] = useState<boolean>(false);
    const [editPostModal, setEditPostModal] = useState<boolean>(false);
    const dispatch = useDispatch();
 
@@ -14,9 +13,10 @@ export const Post: React.FC<{ content: PostInterface }> = ({ content }) => {
       dispatch(deletePost(content));
    };
 
-   const editPost = () => {
-      setEditPostModal(true);
+   const toggleModal = () => {
+      setEditPostModal(!editPostModal);
    };
+
    return (
       <div className={s.post}>
          <h2>{content.title}</h2>
@@ -24,9 +24,9 @@ export const Post: React.FC<{ content: PostInterface }> = ({ content }) => {
             <b>{content.genre}</b>
          </p>
          <p>{content.body}</p>
-         {editPostModal ? <EditPost content={content} /> : undefined}
+         {editPostModal ? <EditPost toggleModal={toggleModal} editPostModal={editPostModal} content={content} /> : undefined}
          <button onClick={del}>Delete</button>
-         <button onClick={() => editPost()}>Edit</button>
+         <button onClick={toggleModal}>Edit</button>
       </div>
    );
 };

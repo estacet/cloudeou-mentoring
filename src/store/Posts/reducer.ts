@@ -10,7 +10,13 @@ export const postsReducer = (state = initialState, action: any) => {
             items: action.payload,
          };
 
-      case 'POSTS/ADD':
+         case 'POSTS/ADD':
+         return {
+            ...state,
+            items: [...state.items, action.payload],
+         };
+
+         case 'POSTS/PUT':
          return {
             ...state,
             items: [...state.items, action.payload],

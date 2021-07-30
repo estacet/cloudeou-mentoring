@@ -4,6 +4,8 @@ import { postApi } from '../../api/postApi';
 import { genreApi } from '../../api/genreApi';
 import { Dropdown } from '../Dropdown/Dropdown';
 import s from './Form.module.scss';
+import { useDispatch } from 'react-redux';
+import { createPosts } from '../../store/Posts/actionCreator';
 
 type Inputs = {
    title: string;
@@ -13,12 +15,13 @@ type Inputs = {
 
 export const CreatePost = () => {
    const [activeOption, setActiveOption] = useState<string>();
+   const dispatch = useDispatch();
 
    const { register, handleSubmit } = useForm<Inputs>();
    const onSubmit: SubmitHandler<Inputs> = async (data, event?: any) => {
       try {
          if (activeOption) data.genre = activeOption;
-         await postApi.create(data);
+         dispatch(createPosts(data))
          alert('successfully created post!');
          event.target.reset();
       } catch (error) {

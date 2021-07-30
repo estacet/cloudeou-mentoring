@@ -9,7 +9,17 @@ export const setPosts = (payload: PostInterface[]) => ({
    payload,
 });
 
+export const createPosts = (payload: PostInterface) => ({
+   type: 'POSTS/ADD',
+   payload,
+});
+
 export const deletePost = (payload: PostInterface) => ({
    type: 'POSTS/DELETE',
+   payload,
+});
+
+export const editPost = (payload: PostInterface) => ({
+   type: 'POSTS/PUT',
    payload,
 });
