@@ -9,7 +9,7 @@ export const Post: React.FC<{ content: PostInterface }> = ({ content }) => {
    const [editPostModal, setEditPostModal] = useState<boolean>(false);
    const dispatch = useDispatch();
 
-   const del = () => {
+   const removePost = () => {
       dispatch(deletePost(content));
    };
 
@@ -25,7 +25,7 @@ export const Post: React.FC<{ content: PostInterface }> = ({ content }) => {
          </p>
          <p>{content.body}</p>
          {editPostModal ? <EditPost toggleModal={toggleModal} editPostModal={editPostModal} content={content} /> : undefined}
-         <button onClick={del}>Delete</button>
+         <button onClick={removePost}>Delete</button>
          <button onClick={toggleModal}>Edit</button>
       </div>
    );

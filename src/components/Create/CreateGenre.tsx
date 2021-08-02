@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { genreApi } from '../../api/genreApi';
 import s from './Form.module.scss';
+import { useDispatch } from 'react-redux';
+import { createGenres } from '../../store/Genres/actionCreator';
 
 type Inputs = {
    name: string;
@@ -8,9 +9,12 @@ type Inputs = {
 
 export const CreateGenre = () => {
    const { register, handleSubmit } = useForm<Inputs>();
+
+   const dispatch = useDispatch();
+
    const onSubmit = async (data: Inputs, event?: any) => {
       try {
-         await genreApi.create(data);
+         dispatch(createGenres(data))
          alert('successfully created genre!');
          event.target.reset();
       } catch (error) {

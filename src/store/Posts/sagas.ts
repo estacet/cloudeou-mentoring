@@ -19,7 +19,6 @@ export function* fetchDeletePostRequest({ payload }: any): any {
 
 export function* fetchUpdatePostRequest({ payload }: any): any {
    yield call(postApi.edit, payload);
-   console.log(payload)
    const data = yield call(postApi.get);
    yield put(setPosts(data));
 }

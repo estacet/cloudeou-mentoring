@@ -1,6 +1,6 @@
+import React, { useRef, useEffect }  from "react";
 import s from './EditPost.module.scss';
-import React  from "react";
-import {PostInterface} from "../../interfaces";
+import { PostInterface } from "../../interfaces";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { editPost } from '../../store/Posts/actionCreator';
@@ -15,16 +15,16 @@ type Inputs = {
 export const EditPost: React.FC<{ content: PostInterface, toggleModal: () => void, editPostModal: boolean}> = ({ content , toggleModal, editPostModal}) => {
     const dispatch = useDispatch();
 
-    const modalRef = React.useRef<HTMLDivElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null);
 
     const nonModalClick = (event: any) => {
         const path = event.path || (event.composedPath && event.composedPath());
         if (!path.includes(modalRef.current)) toggleModal();
     };
-    React.useEffect(() => {
+    useEffect(() => {
         document.body.addEventListener('click', nonModalClick);
         return () => document.body.removeEventListener('click', nonModalClick);
-    }, []);
+    });
 
     const { register, handleSubmit } = useForm<Inputs>({
         defaultValues: {

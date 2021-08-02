@@ -8,9 +8,9 @@
     },
     {
       "title": "post",
-      "body": "this is post",
-      "genre": "Media",
-      "id": 2
+      "body": "post post edited",
+      "id": 2,
+      "genre": "Media"
     },
     {
       "title": "post",
@@ -20,21 +20,15 @@
     },
     {
       "title": "post",
-      "body": "post",
+      "body": "post test",
       "id": 4,
       "genre": "Programming"
     },
     {
-      "title": "111",
-      "body": "2222",
-      "genre": "Sport",
+      "title": "One post",
+      "body": "post body",
+      "genre": "Science",
       "id": 5
-    },
-    {
-      "title": "111",
-      "body": "2222",
-      "genre": "Sport",
-      "id": 6
     }
   ],
   "genres": [
@@ -49,6 +43,10 @@
     {
       "name": "Media",
       "id": 3
+    },
+    {
+      "name": "Science",
+      "id": 4
     }
   ]
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useRef, useEffect, useState } from 'react';
 import s from './Dropdown.module.scss';
 
 interface Props {
@@ -9,9 +9,9 @@ interface Props {
 }
 
 export const Dropdown: React.FC<Props> = ({ activeOption, setActiveOption, options, placeHolder }) => {
-   const dropdownOptions = React.useMemo(() => options, [options]);
+   const dropdownOptions = useMemo(() => options, [options]);
 
-   const [visibleDropdown, setVisibleDropdown] = React.useState<boolean>(false);
+   const [visibleDropdown, setVisibleDropdown] = useState<boolean>(false);
    const toggleVisibleDropdown = () => setVisibleDropdown(!visibleDropdown);
 
    const setOption = (payload: string) => {
@@ -19,12 +19,12 @@ export const Dropdown: React.FC<Props> = ({ activeOption, setActiveOption, optio
       toggleVisibleDropdown();
    };
 
-   const dropdownRef = React.useRef<HTMLDivElement>(null);
+   const dropdownRef = useRef<HTMLDivElement>(null);
    const nonDropdownClick = (event: any) => {
       const path = event.path || (event.composedPath && event.composedPath());
       if (!path.includes(dropdownRef.current)) setVisibleDropdown(false);
    };
-   React.useEffect(() => {
+   useEffect(() => {
       document.body.addEventListener('click', nonDropdownClick);
       return () => document.body.removeEventListener('click', nonDropdownClick);
    }, []);
